@@ -1,0 +1,252 @@
+﻿<Window x:Class="SQL_Learning.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SQL_Learning"
+        mc:Ignorable="d"
+        Title="SQL DashBoard" Height="500" Width="800"
+        MinHeight="450"
+        MinWidth="700"
+        FontFamily="Century Gothic" FontSize="16"
+        Background="AliceBlue"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        WindowState="Maximized"
+        
+        >
+    <Grid>
+        <!--#region  grid def-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Name="ControlCol" Width="*"/>
+            <ColumnDefinition Name="logCol" Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        <!--main area of form used for controls-->
+            <!--#region main stackpannel-->
+        <StackPanel 
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalAlignment="Left" 
+            MinWidth="360"
+            >
+            <!--start of inputs-->
+            <!--#region inputs-->
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                >
+                <Button
+                    Name ="Add_But"
+                    Content="Add Entry"
+                    Width="{Binding ElementName=Search_But, Path=ActualWidth}"
+                    Height="30"
+                    Margin="5,0,0,0"
+                   
+                    HorizontalAlignment="Center"
+            />
+                <Button
+                    x:Name ="Delete_but"
+                    Content="Remove entry"
+                    Width="{Binding ActualWidth, ElementName=Search_But}"
+                    Height="30"
+                    Margin="5,0,0,0"
+             
+                    HorizontalAlignment="Center"
+            />
+            </StackPanel>
+            <TextBlock
+                Text="Input"
+                FontWeight="DemiBold"
+                Margin="0,10,0,0"
+                TextDecorations="Underline"
+             />
+            <!--#region SearchBars-->
+            <!--#region First name input-->
+            <StackPanel
+                Name ="SearchName"
+                Orientation="Horizontal"
+                Margin="0,10,0,0"
+                >
+                <TextBlock
+                 Text="First Name :"
+                 Width="{Binding ElementName=ref, Path=ActualWidth}"   
+                 TextAlignment="Right"
+                  
+                 />
+                <TextBox
+                 Name="SearchName_Box"
+                 MinWidth="70"   
+                 MaxLength="50" 
+                 SpellCheck.IsEnabled="True"
+                 />
+                <Button 
+                    Content="Search"
+                    Name="Name_but"
+
+                    Margin="5,0,0,0"
+                    />
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region Last name input-->
+            <StackPanel
+                Name ="SearchLastName"
+                Orientation="Horizontal"
+                Margin="0,10,0,0"
+                >
+                <TextBlock
+                 Text="Last Name :"
+                 Width="{Binding ElementName=ref, Path=ActualWidth}"   
+                 TextAlignment="Right"
+                  
+                 />
+                <TextBox
+                 Name="SearchLastName_Box"
+                 MinWidth="70"   
+                 MaxLength="50" 
+                 SpellCheck.IsEnabled="True"
+                 />
+                <Button 
+                    Content="Search"
+                    Name="lastName_but"
+
+                    Margin="5,0,0,0"
+                    />
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region Country input-->
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0,10,0,0"
+                >
+                <TextBlock
+                 Text="Country :"
+                 Width="{Binding ElementName=ref, Path=ActualWidth}"
+                 TextAlignment="Right"
+                 />
+                <TextBox
+                 Name="SearchCountry_Box"
+                 MinWidth="70"   
+                 MaxLength="50"
+                 />
+                <Button 
+                    Content="Search"
+                    Name="Country_but"
+
+                    Margin="5,0,0,0"
+                    />
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region ID input-->
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="0,10,0,0"
+                >
+                <TextBlock
+                 Name="ref"
+                 Text="CustomerID :"
+                 Width="auto"
+                 TextAlignment="Right"
+                 />
+                <TextBox
+                 Name="SearchCustomerID_Box"
+                 MinWidth="70"   
+                 MaxLength="5"
+                 />
+                <Button 
+                    Content="Search"
+                    Name="ID_but"
+
+                    Margin="5,0,0,0"
+                    />
+            </StackPanel>
+            <Button 
+            Content="Get all"
+            Name="Get_All_Button"
+
+            Margin="175,10,0,0"
+            MaxHeight="50"
+            MaxWidth="70"
+            HorizontalAlignment="Left"
+            />
+        
+            <!--#endregion-->
+            <!--#endregion-->
+            <!--#endregion-->
+            <!--end of inputs-->
+
+            <!--start of outputs-->
+            <!--#region outputs-->
+            <TextBlock
+                Text="Output"
+                FontWeight="DemiBold"
+                Margin="0,10,0,0"
+                TextDecorations="Underline"
+             />
+            <ListBox
+                Name="output_box"
+                Margin="10"
+                MinWidth="105"
+                Width="{Binding ElementName=ControlCol, Path=Width, Mode=OneWay}"
+                MinHeight="170"
+                >
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+                <!--#endregion-->
+            <!--end of outputs-->
+        </StackPanel>
+       <!--#endregion-->    
+        <!--log for users to see what actions have been taken and how they worked-->
+       <!--#region LogBox-->
+        <StackPanel
+            Orientation="Vertical"
+           Grid.Row="1"
+            Grid.Column="2"
+         >
+         <TextBlock
+             Text="LogBox"
+             Margin="10,0"
+             FontWeight="Bold" 
+             TextDecorations="Underline"
+         />
+            <ListBox
+         Name="Log_Box"
+         Margin="10" 
+         Width="{Binding ElementName=logCol, Path=Width}"
+         MinHeight="390"
+         >
+            <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+         </ListBox>
+        </StackPanel>
+        <!--#endregion-->
+    </Grid>
+</Window>

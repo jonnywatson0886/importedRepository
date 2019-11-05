@@ -1,0 +1,83 @@
+﻿<Window x:Class="SS_GUI_Testing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SS_GUI_Testing"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="1080" Width="1920"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Background="WhiteSmoke"
+        FontSize="22"
+        FontFamily="Century Gothic"
+        >
+    <Grid>
+        <!--#region col/row def-->
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        <!--#region buttons-->
+        <Image
+            Grid.Column="2"
+            Grid.Row="1"
+            Source="C:\Users\jwatson\OneDrive - CyDen Limited\Training\Set_State_Model\Set_State_GUI_Example\SS_GUI_Testing\SS_GUI_Testing\Cyden.ico"
+            />
+        <Button
+            Grid.Column="2"
+            Grid.Row="6"
+            Margin="15"
+            Name="New_but"
+            Content="New"
+            Click="New_but_Click"
+            Background="AliceBlue"
+             />
+        <Button
+            Grid.Column="2"
+            Grid.Row="7"
+            Margin="15"
+            Name="Load_but"
+            Content="Load"
+            Click="Load_but_Click"
+            Background="AliceBlue"
+            />
+        <Button
+            Grid.Column="2"
+            Grid.Row="8"
+            Margin="15"
+            Name= "Exit_but"
+            Content="Exit"
+            Click="Exit_but_Click"
+            Background="AliceBlue"
+            />
+        <!--#endregion-->
+        <TabControl
+         Grid.Column="1"
+         Grid.Row="1"
+         Grid.RowSpan="8"
+         Background="Black"
+         >
+         <TabItem
+            Header="Diagram"
+            Content="{Binding Path = LiveScreen, Mode= OneWay}"
+         />
+        </TabControl>
+    </Grid>
+</Window>

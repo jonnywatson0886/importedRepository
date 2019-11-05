@@ -1,0 +1,6 @@
+C:\Users\jwatson\Desktop\Testing\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.exe.config
+C:\Users\jwatson\Desktop\Testing\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.exe
+C:\Users\jwatson\Desktop\Testing\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.pdb
+C:\Users\jwatson\Desktop\Testing\aysnch_looping\aysnch_looping\obj\Debug\aysnch_looping.csprojAssemblyReference.cache
+C:\Users\jwatson\Desktop\Testing\aysnch_looping\aysnch_looping\obj\Debug\aysnch_looping.exe
+C:\Users\jwatson\Desktop\Testing\aysnch_looping\aysnch_looping\obj\Debug\aysnch_looping.pdb
