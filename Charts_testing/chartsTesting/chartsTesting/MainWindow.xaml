@@ -1,0 +1,49 @@
+﻿<Window x:Class="chartsTesting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+        xmlns:local="clr-namespace:chartsTesting"
+        mc:Ignorable="d"
+
+        Title="MainWindow" Height="450" Width="800" >
+    <Grid>
+        <!--#region col/row def -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        <s:SciChartSurface
+        Grid.Column="1"
+        Grid.Row="1"
+        Name="TestChart"
+     >
+            <s:SciChartSurface.RenderableSeries>
+                <s:FastLineRenderableSeries 
+                    x:Name="LineSeries"
+                    Stroke="#FF4083B7"
+                    StrokeThickness="1"
+                    AntiAliasing="True"
+                    DataSeries="{Binding Path= FirstDataSeries ,Mode=OneWay}"
+                    Cursor="Wait"/>
+                    
+            </s:SciChartSurface.RenderableSeries>
+        </s:SciChartSurface>
+        <s:SciChartScrollbar 
+            Name="ChartScrollbar"
+            Grid.Row="2"
+            Grid.Column="1" 
+            Axis="{Binding ElementName=TestChart, Path=XAxis}"
+
+            />
+    </Grid>
+</Window>
