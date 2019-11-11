@@ -26,7 +26,7 @@
         Grid.Column="1"
         Grid.Row="1"
         Name="TestChart"
-     >
+        >
             <s:SciChartSurface.RenderableSeries>
                 <s:FastLineRenderableSeries 
                     x:Name="LineSeries"
@@ -34,16 +34,24 @@
                     StrokeThickness="1"
                     AntiAliasing="True"
                     DataSeries="{Binding Path= FirstDataSeries ,Mode=OneWay}"
-                    Cursor="Wait"/>
-                    
+             />
+
             </s:SciChartSurface.RenderableSeries>
+
         </s:SciChartSurface>
-        <s:SciChartScrollbar 
+            <s:SciChartScrollbar 
             Name="ChartScrollbar"
             Grid.Row="2"
             Grid.Column="1" 
             Axis="{Binding ElementName=TestChart, Path=XAxis}"
+        />
+        <TextBlock Text="blank"
+                   Name="boxFace"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   TextWrapping="Wrap"
+                   Grid.Row="1" Grid.Column="2" />
 
-            />
     </Grid>
 </Window>

@@ -44,12 +44,12 @@ namespace chartsTesting
         private void Timer_Tick(object sender, EventArgs e)
         {
             _dataHandler.addData();
+     
         }
 
         private void createGraph()
         {
-
-
+            boxFace.Text = TestChart.RenderSurface.GetType().Name.ToString();
             _yAxis = new NumericAxis() {AxisTitle = "values" };
             _yAxis.VisibleRange = new DoubleRange(0,125);
             _xAxis = new DateTimeAxis() { AxisTitle = "time"};
@@ -59,7 +59,7 @@ namespace chartsTesting
             TestChart.YAxis = _yAxis;
 
             // Specify Interactivity Modifiers
-            // TestChart.ChartModifier = new ModifierGroup(new RubberBandXyZoomModifier(), new ZoomExtentsModifier());
+            TestChart.ChartModifier = new ModifierGroup(new RubberBandXyZoomModifier(), new ZoomExtentsModifier());
 
             TestChart.DataContext = _dataHandler;
             ScrollingViewportManager scroll = new ScrollingViewportManager(TimeSpan.FromHours(6));
