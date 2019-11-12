@@ -4,3 +4,8 @@ C:\Users\jwatson\OneDrive - CyDen Limited\Training\aysnch_looping\aysnch_looping
 C:\Users\jwatson\OneDrive - CyDen Limited\Training\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.exe.config
 C:\Users\jwatson\OneDrive - CyDen Limited\Training\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.exe
 C:\Users\jwatson\OneDrive - CyDen Limited\Training\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.pdb
+C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.exe.config
+C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.exe
+C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.pdb
+C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\obj\Debug\aysnch_looping.exe
+C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\obj\Debug\aysnch_looping.pdb

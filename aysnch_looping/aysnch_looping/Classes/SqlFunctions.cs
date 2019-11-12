@@ -11,11 +11,10 @@ namespace aysnch_looping.Classes
         #region vars
         public List<string> Names = new List<string>();
         public List<string>[] Columns;
-        public SqlConnection Connection = new SqlConnection();
-
+        private SqlConnection Connection;
         #endregion
         #region functions
-
+        #region async fucntions
         private async Task<List<string>> GetColumnsAsync(string table)
         {
             List<string> asyncCol = new List<string>();
@@ -51,7 +50,7 @@ namespace aysnch_looping.Classes
         public void ConnectToDb()
         {
             try
-            { 
+            {
                 //create a connection string using a connection string builder
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
@@ -114,10 +113,9 @@ namespace aysnch_looping.Classes
             }
 
             Columns = await Task.WhenAll(tasks);
-        }
+        } 
+        #endregion
     }
-
-
     #endregion
 }
 
