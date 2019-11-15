@@ -13,7 +13,7 @@ namespace aysnch_looping.Classes
         public List<string>[] Columns;
         private SqlConnection Connection;
         #endregion
-        #region functions
+        #region functionsjj
         #region async fucntions
         private async Task<List<string>> GetColumnsAsync(string table)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,12 +12,12 @@ namespace aysnch_looping.Classes
     public class PartsCountingSQL
     {
         public SqlConnection Connection;
-        private List<GoodPart> _parts;
+        private List<GoodPart> Data;
 
         public PartsCountingSQL()
         {
             Connection = new SqlConnection();
-            _parts = new List<GoodPart>();
+            Data = new List<GoodPart>();
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace aysnch_looping.Classes
                 builder.IntegratedSecurity = true;
 
                 // Connect to SQL
-                Console.Write("Connecting to SQL Server ... ");
+                Console.WriteLine("Connecting to SQL Server ... ");
 
                 //create the connection using the connection string we made above 
                 Connection = new SqlConnection(builder.ConnectionString);
@@ -59,7 +60,8 @@ namespace aysnch_looping.Classes
         /// <param name="stage"></param>
         public void runPartsSP(int hours, int stage)
         {
-            _parts = new List<GoodPart>();
+            DateTime dt = new DateTime();
+            Data = new List<GoodPart>();
 
             SqlCommand command = new SqlCommand("SPgoodParts", Connection)
                 {CommandType = CommandType.StoredProcedure};
@@ -74,27 +76,41 @@ namespace aysnch_looping.Classes
 
             command.Parameters.Add(splParameter);
 
-            splParameter = new SqlParameter("@Stage", SqlDbType.Int)
-                {Value = (stage)};
-
-            command.Parameters.Add(splParameter);
+            SqlParameter outputParameter = new SqlParameter("@TimeOfRun", SqlDbType.DateTime)
+            {
+                Direction = ParameterDirection.Output
+            };
+          
+            command.Parameters.Add(outputParameter);
+            
+            Connection.Open();
 
             using (command)
             {
-                Connection.Open();
+                
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     GoodPart part = new GoodPart();
-                    part.RecordDate = (DateTime) (reader["RecordDate"]);
-                    part.TimeOfRun = (DateTime) (reader["TimeOfRun"]);
                     part.Stage = (int) (reader["Stage"]);
-                    part.tool = (int) (reader["tool"]);
-
-                    _parts.Add(part);
+                    part.goodPartsCount = (int) (reader["NumberOfGoodParts"]);
+                    Data.Add(part); 
+                    
                 }
                 Connection.Close();
-                Console.WriteLine("number of results at :" + _parts[_parts.Count-1].TimeOfRun + " " + _parts.Count + "''\n");
+
+                Connection.Open();
+                command.ExecuteNonQuery();
+               dt = Convert.ToDateTime(command.Parameters["@TimeOfRun"].Value.ToString());
+
+                Connection.Close();
+
+                Console.WriteLine("Time: " + dt.ToShortTimeString());
+                foreach(GoodPart StageData in Data)
+                {
+                    Console.WriteLine("Stage : "  + StageData.Stage );
+                    Console.WriteLine("number of parts: " + StageData.goodPartsCount.ToString() + "\n");
+                }
             }
         }
     }

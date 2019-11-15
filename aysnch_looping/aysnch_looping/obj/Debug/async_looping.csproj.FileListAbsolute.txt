@@ -9,3 +9,4 @@ C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_loopi
 C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\bin\Debug\aysnch_looping.pdb
 C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\obj\Debug\aysnch_looping.exe
 C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\obj\Debug\aysnch_looping.pdb
+C:\Users\jwatson\OneDrive - CyDen Limited\Training\learningprojects\aysnch_looping\aysnch_looping\obj\Debug\async_looping.csprojAssemblyReference.cache
