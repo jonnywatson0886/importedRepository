@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Text;
@@ -13,11 +14,13 @@ namespace aysnch_looping.Classes
     {
         public SqlConnection Connection;
         private List<GoodPart> Data;
+        private Stopwatch _stopwatch;
 
         public PartsCountingSQL()
         {
             Connection = new SqlConnection();
             Data = new List<GoodPart>();
+            _stopwatch = new Stopwatch();
         }
 
         /// <summary>
@@ -31,14 +34,17 @@ namespace aysnch_looping.Classes
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
                 //the DataSouce is the sever of the DB
-                builder.DataSource = @"DEVELOPMENT-L19\TESTSQL";
+                builder.DataSource = "zdnaykhfj5.database.windows.net";
 
                 //the initialCatalog is the the database on the sever you want to connect to
-                builder.InitialCatalog = "FooBarProductionCopy";
+                builder.InitialCatalog = "Glow_Production";
 
                 // Turn on integrated security:
                 //this replaces the user name and password for the sever
-                builder.IntegratedSecurity = true;
+                builder.IntegratedSecurity = false;
+
+                builder.UserID = "jwatson";
+                builder.Password = "&a4Rd%2@Xz7G6Ey";
 
                 // Connect to SQL
                 Console.WriteLine("Connecting to SQL Server ... ");
@@ -63,7 +69,7 @@ namespace aysnch_looping.Classes
             DateTime dt = new DateTime();
             Data = new List<GoodPart>();
 
-            SqlCommand command = new SqlCommand("SPgoodParts", Connection)
+            SqlCommand command = new SqlCommand("SPstageGoodPartsCount", Connection)
                 {CommandType = CommandType.StoredProcedure};
 
             SqlParameter splParameter = new SqlParameter("@TimeStarted", SqlDbType.DateTime)
@@ -83,6 +89,7 @@ namespace aysnch_looping.Classes
           
             command.Parameters.Add(outputParameter);
             
+            _stopwatch.Start();
             Connection.Open();
 
             using (command)
@@ -105,7 +112,10 @@ namespace aysnch_looping.Classes
 
                 Connection.Close();
 
+                _stopwatch.Stop();
                 Console.WriteLine("Time: " + dt.ToShortTimeString());
+                Console.WriteLine("Time taken to run task on DB : " + _stopwatch.Elapsed.Seconds);
+                _stopwatch.Reset();
                 foreach(GoodPart StageData in Data)
                 {
                     Console.WriteLine("Stage : "  + StageData.Stage );
